@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView layoutX="14.0" layoutY="10.0" prefHeight="245.0" prefWidth="548.0">
+              <columns>
+                <TableColumn prefWidth="129.0" text="Tournoi" />
+                <TableColumn prefWidth="150.0" text="Grand Prix" />
+                  <TableColumn prefWidth="154.0" text="Classement Pilote" />
+                  <TableColumn prefWidth="111.0" text="Ecurie" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <Pane prefHeight="91.0" prefWidth="600.0" style="-fx-background-color: cecece;" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="246.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Résultat" wrappingWidth="121.357421875">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </top>
+</BorderPane>

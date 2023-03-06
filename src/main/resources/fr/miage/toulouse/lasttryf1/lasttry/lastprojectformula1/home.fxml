@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="bp" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1.sideBarController">
+   <center>
+      <AnchorPane fx:id="ap" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="177.0" fitWidth="214.0" layoutX="194.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@WhatsApp%20Image%202023-02-09%20at%2021.16.12.jpeg" />
+               </image>
+            </ImageView>
+            <Button layoutX="244.0" layoutY="240.0" mnemonicParsing="false" onAction="#createTournoi" text="Créer un tournoi">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <Pane prefHeight="85.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="247.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="26.0" />
+               </font>
+            </Text>
+            <Text layoutX="119.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sur le site de gestion de tournoi de formula 1" textAlignment="CENTER" wrappingWidth="350.1028747558594" />
+         </children>
+      </Pane>
+   </top>
+</BorderPane>
