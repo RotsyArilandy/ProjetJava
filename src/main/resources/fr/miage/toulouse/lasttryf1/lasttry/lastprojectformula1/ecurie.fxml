@@ -49,7 +49,7 @@
                </children>
             </VBox>
             <Button layoutX="122.0" layoutY="275.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Précédent" />
-            <Button layoutX="378.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Suivant" />
+            <Button layoutX="378.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Suivant"  onAction="#switchToQ1"/>
          </children>
       </AnchorPane>
    </center>
