@@ -11,14 +11,14 @@
 <?import javafx.scene.text.Text?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1.ControllerScene">
    <center>
       <AnchorPane prefHeight="290.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="111.0" layoutY="58.0" text="Nom du tournoi   : " />
             <Label layoutX="112.0" layoutY="107.0" prefHeight="17.0" prefWidth="111.0" text="Date de début     :" textAlignment="CENTER" />
             <Label layoutX="113.0" layoutY="156.0" prefHeight="17.0" prefWidth="101.0" text="Date de fin          :" />
-            <Button layoutX="376.0" layoutY="217.0" mnemonicParsing="false" text="Valider">
+            <Button layoutX="376.0" layoutY="217.0" mnemonicParsing="false" text="Valider" onAction = "#switchToAjouterGP">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -26,7 +26,7 @@
             <TextField layoutX="243.0" layoutY="54.0" prefHeight="25.0" prefWidth="247.0" />
             <DatePicker layoutX="243.0" layoutY="103.0" prefHeight="25.0" prefWidth="249.0" />
             <DatePicker layoutX="243.0" layoutY="152.0" prefHeight="25.0" prefWidth="249.0" />
-            <Button layoutX="215.0" layoutY="217.0" mnemonicParsing="false" text="Annuler">
+            <Button layoutX="215.0" layoutY="217.0" mnemonicParsing="false" text="Annuler" onAction = "#switchToAccueil">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
