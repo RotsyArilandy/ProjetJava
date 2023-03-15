@@ -7,7 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.net.URL;
+import java.nio.CharBuffer;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
@@ -58,6 +62,7 @@ public class tabController implements Initializable {
             String s = inputNomTournoi.getText();
             champTournoi.setText(s);
 
+
             }
 
     }
@@ -87,7 +92,8 @@ public class tabController implements Initializable {
         X.add(GP);
 
         tableView.setItems(X);
-
+        nomInput.setText("");
+        paysInput.setText("");
     }
 
     @FXML

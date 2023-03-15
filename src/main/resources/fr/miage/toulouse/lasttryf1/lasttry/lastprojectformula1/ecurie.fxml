@@ -26,7 +26,10 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="427.0" layoutY="276.0" mnemonicParsing="false" onAction="#removeGrandPrix" text="Supprimer" />
+            <Button layoutX="333.0" layoutY="276.0" mnemonicParsing="false" onAction="#removeGrandPrix" text="Supprimer" />
+            <Button layoutX="414.0" layoutY="276.0" mnemonicParsing="false" onAction="#setEcuries" prefHeight="17.0" prefWidth="125.0" text="Charger les éléments" />
+            <Button layoutX="526.0" layoutY="276.0" mnemonicParsing="false" onAction="#save" text="Sauvegarder" />
+
             <TableView fx:id="tableView" layoutX="324.0" layoutY="10.0" prefHeight="257.0" prefWidth="261.0">
               <columns>
                 <TableColumn fx:id="ecurie" prefWidth="84.66668701171875" text="Ecurie" />

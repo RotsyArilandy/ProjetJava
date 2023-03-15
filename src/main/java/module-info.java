@@ -4,6 +4,7 @@ module fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1 {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires java.json;
 
     opens fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1 to javafx.fxml;
     exports fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1;

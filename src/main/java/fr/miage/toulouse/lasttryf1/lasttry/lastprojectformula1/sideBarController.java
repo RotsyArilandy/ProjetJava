@@ -8,7 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,7 +36,7 @@ public class sideBarController implements Initializable {
     }
 
     @FXML
-    private void createTournoi(ActionEvent event){
+    private void createTournoi(ActionEvent event) {
         loadPage("createTournoi");
     }
 
