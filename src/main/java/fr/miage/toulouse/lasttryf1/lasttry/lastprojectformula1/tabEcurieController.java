@@ -51,6 +51,8 @@ public class tabEcurieController implements Initializable {
     private static final String _dataPath = "data/ecurie.json";
 
     int nbClick = 0;
+    private Stage stage;
+    private Scene scene;
 
     public tabEcurieController()
     {
@@ -101,6 +103,20 @@ public class tabEcurieController implements Initializable {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+    public void switchToQ1(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q1.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToTournois(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q1.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
