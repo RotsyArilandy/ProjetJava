@@ -4,9 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONString;
@@ -44,6 +48,8 @@ public class tabEcurieController implements Initializable {
     private static final String _dataPath = "data/ecurie.json";
 
     int nbClick = 0;
+    private Stage stage;
+    private Scene scene;
 
     public tabEcurieController()
     {
@@ -94,6 +100,20 @@ public class tabEcurieController implements Initializable {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+    public void switchToQ1(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q1.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToTournois(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q1.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
