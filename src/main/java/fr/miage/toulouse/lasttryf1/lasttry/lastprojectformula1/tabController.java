@@ -1,5 +1,5 @@
 package fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1;
-
+// Ce controller est le controller de  la page ajouter GP
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -112,6 +112,15 @@ public class tabController implements Initializable {
     public void switchToCalendrier(ActionEvent event) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Calendrier.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToEcurie(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ecurie.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load(), 560, 560);
         stage.setScene(scene);

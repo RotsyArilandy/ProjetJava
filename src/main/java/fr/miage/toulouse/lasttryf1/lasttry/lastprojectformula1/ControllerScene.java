@@ -14,9 +14,6 @@ import java.io.IOException;
 
 public class ControllerScene {
     @FXML
-    private TextField inputNomTournoi;
-
-    @FXML
     private DatePicker DateDeb;
 
     @FXML
@@ -42,7 +39,7 @@ public class ControllerScene {
     }
 
     public void switchToAjouterGP(ActionEvent event) throws IOException {
-        if (DateFin.getValue().isAfter(DateDeb.getValue())) {
+        if (DateDeb.getValue().isAfter(DateFin.getValue())) {
             showAlert(Alert.AlertType.ERROR, "Erreur !La date de fin du tournoi est antérieure à la date de début du tournoi.");
 
         } else {
