@@ -1,15 +1,20 @@
 package fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1;
-
+// Ce controller est le controller de  la page ajouter GP
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.CharBuffer;
 import java.time.LocalDate;
@@ -18,6 +23,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class tabController implements Initializable {
+    private Stage stage;
+    private Scene scene;
     @FXML
     private TableView<GrandPrix> tableView;
 
@@ -101,6 +108,25 @@ public class tabController implements Initializable {
         int selectedID = tableView.getSelectionModel().getSelectedIndex();
         tableView.getItems().remove(selectedID);
     }
+
+    public void switchToCalendrier(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Calendrier.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToEcurie(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ecurie.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 
 }

@@ -17,27 +17,19 @@
    <top>
       <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="117.0" prefWidth="600.0" style="-fx-background-color: CECECE;" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="211.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOURNOI &amp; CALENDRIER">
+            <Text layoutX="160.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AJOUTER UN GRAND PRIX">
                <font>
-                  <Font name="System Bold Italic" size="17.0" />
+                  <Font name="System Bold Italic" size="23.0" />
                </font>
             </Text>
-            <Text layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom du tournoi :" />
-            <Text layoutX="198.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de début : " />
-            <Text layoutX="395.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de fin : " />
-            <TextField fx:id="inputNomTournoi" layoutX="114.0" layoutY="45.0" prefHeight="25.0" prefWidth="74.0" />
-            <DatePicker fx:id="inputDateDep" layoutX="293.0" layoutY="45.0" prefHeight="25.0" prefWidth="88.0" />
-            <DatePicker fx:id="inputDateFin" layoutX="484.0" layoutY="45.0" prefHeight="25.0" prefWidth="95.0" />
-            <Button layoutX="278.0" layoutY="82.0" mnemonicParsing="false" onAction="#recupNomTournoi" text="Ajouter" />
          </children>
       </Pane>
    </top>
    <left>
       <AnchorPane fx:id="ap" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="166.0" prefWidth="584.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="38.0" prefHeight="241.0" prefWidth="269.0">
+            <VBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="23.0" prefHeight="269.0" prefWidth="269.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Grand Prix" textAlignment="CENTER" underline="true" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom du GP : " />
                   <TextField fx:id="nomInput" prefHeight="25.0" prefWidth="169.0" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date : " wrappingWidth="68.900390625" />
@@ -52,14 +44,16 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <TableView fx:id="tableView" layoutX="295.0" layoutY="38.0" prefHeight="248.0" prefWidth="289.0">
+            <TableView fx:id="tableView" layoutX="295.0" layoutY="14.0" prefHeight="187.0" prefWidth="289.0">
               <columns>
                 <TableColumn fx:id="name" prefWidth="75.0" text="Nom" />
                 <TableColumn fx:id="pays" prefWidth="104.6666259765625" text="Pays" />
                   <TableColumn fx:id="date" prefWidth="102.66668701171875" text="Date" />
               </columns>
             </TableView>
-            <Button layoutX="394.0" layoutY="294.0" mnemonicParsing="false" onAction="#removeGrandPrix" text="Supprimer" />
+            <Button layoutX="297.0" layoutY="209.0" mnemonicParsing="false" onAction="#removeGrandPrix" prefHeight="25.0" prefWidth="285.0" text="Supprimer" />
+            <Button layoutX="121.0" layoutY="265.0" mnemonicParsing="false" onAction="#switchToCalendrier" prefHeight="25.0" prefWidth="123.0" text="Précédent" />
+            <Button layoutX="342.0" layoutY="265.0" mnemonicParsing="false" onAction="#switchToEcurie" prefHeight="25.0" prefWidth="123.0" text="Suivant" />
          </children>
       </AnchorPane>
    </left>
