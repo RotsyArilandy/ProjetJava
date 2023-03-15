@@ -24,8 +24,8 @@
                </font>
             </Button>
             <TextField layoutX="243.0" layoutY="54.0" prefHeight="25.0" prefWidth="247.0" />
-            <DatePicker layoutX="243.0" layoutY="103.0" prefHeight="25.0" prefWidth="249.0" />
-            <DatePicker layoutX="243.0" layoutY="152.0" prefHeight="25.0" prefWidth="249.0" />
+            <DatePicker fx:id="DateDeb" layoutX="243.0" layoutY="103.0" prefHeight="25.0" prefWidth="249.0" />
+            <DatePicker fx:id="DateFin" layoutX="243.0" layoutY="152.0" prefHeight="25.0" prefWidth="249.0" />
             <Button layoutX="215.0" layoutY="217.0" mnemonicParsing="false" text="Annuler" onAction = "#switchToAccueil">
                <font>
                   <Font name="System Bold" size="12.0" />
