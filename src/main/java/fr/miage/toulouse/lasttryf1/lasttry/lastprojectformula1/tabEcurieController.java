@@ -174,6 +174,7 @@ public class tabEcurieController implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load(), 560, 560);
         stage.setScene(scene);
+
         stage.show();
     }
 

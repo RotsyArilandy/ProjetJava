@@ -13,6 +13,9 @@ import java.io.IOException;
 
 public class ControllerScene {
     @FXML
+    private TextField nomTournoi;
+
+    @FXML
     private DatePicker DateDeb;
 
     @FXML
@@ -41,7 +44,11 @@ public class ControllerScene {
         if (DateDeb.getValue().isAfter(DateFin.getValue())) {
             showAlert(Alert.AlertType.ERROR, "Erreur !La date de fin du tournoi est antérieure à la date de début du tournoi.");
 
-        } else {
+        } //si tous les champs ne sont pas remplis
+        else if ((nomTournoi.getText() == null) || (DateDeb.getValue() == null) || (DateFin.getValue() == null)){
+            showAlert(Alert.AlertType.ERROR, "Complétez tous les champs ");
+        }
+        else {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("createTournoi.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(fxmlLoader.load(), 560, 560);

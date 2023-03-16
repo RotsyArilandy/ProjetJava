@@ -11,8 +11,20 @@ import java.io.IOException;
 public class ControllerQ1 {
     private Stage stage;
     private Scene scene;
+
+    public void switchToQ2(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q2.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
+    }
+}
+    /**
     private int[] tab;
     private int temp;
+
 
     public void tableauQ1(){
         tab = new int[20];
@@ -43,4 +55,4 @@ public class ControllerQ1 {
         stage.setScene(scene);
         stage.show();
     }
-}
+}**/

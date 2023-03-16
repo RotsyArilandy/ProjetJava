@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1.ControllerQ1">
    <top>
       <Text layoutX="221.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qualification 1" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <font>
@@ -46,7 +46,7 @@
             </VBox>
             <Button layoutX="360.0" layoutY="226.0" mnemonicParsing="false" text="Trier" />
             <Button layoutX="450.0" layoutY="226.0" mnemonicParsing="false" text="Supprimer" />
-            <Button layoutX="319.0" layoutY="286.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Suivant" />
+            <Button layoutX="319.0" layoutY="286.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Suivant"  onAction = "#switchToQ2"/>
             <Button layoutX="190.0" layoutY="286.0" mnemonicParsing="false" text="Precédent" />
          </children>
       </AnchorPane>
