@@ -51,8 +51,6 @@ public class tabEcurieController implements Initializable {
     private static final String _dataPath = "data/ecurie.json";
 
     int nbClick = 0;
-    private Stage stage;
-    private Scene scene;
 
     public tabEcurieController()
     {
@@ -169,7 +167,8 @@ public class tabEcurieController implements Initializable {
         tableView.setItems(obEcurie);
     }
 
-    public void switchToQ1(ActionEvent event) throws IOException{
+
+    public void switchQ1(ActionEvent event) throws IOException{
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -11,6 +11,23 @@ import java.io.IOException;
 public class ControllerQ1 {
     private Stage stage;
     private Scene scene;
+    private int[] tab;
+    private int temp;
+
+    public void tableauQ1(){
+        tab = new int[20];
+    }
+    public void trier(){
+        while(boutonTrier==true)
+            for(int i=0;i<tab.length;i++){
+                if(tab[i]>tab[i+1]){
+                    temp=tab[i];
+                    tab[i]=tab[i+1];
+                    tab[i+1]=temp;
+                }
+            }
+    }
+
 
     public void switchToECURIE(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ecurie.fxml"));
