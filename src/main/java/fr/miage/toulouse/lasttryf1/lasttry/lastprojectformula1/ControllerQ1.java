@@ -29,27 +29,20 @@ public class ControllerQ1 {
     public void tableauQ1(){
         tab = new int[20];
     }
-    public void trier(){
-        while(boutonTrier==true)
-            for(int i=0;i<tab.length;i++){
-                if(tab[i]>tab[i+1]){
-                    temp=tab[i];
-                    tab[i]=tab[i+1];
-                    tab[i+1]=temp;
-                }
-            }
-    }
+    //public void trier(){
+        //while(boutonTrier==true)
+           // for(int i=0;i<tab.length;i++){
+                //if(tab[i]>tab[i+1]){
+                  //  temp=tab[i];
+                  //  tab[i]=tab[i+1];
+                  //  tab[i+1]=temp;
+             //   }
+           // }
+   // }
 
 
     public void switchToECURIE(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ecurie.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader.load(), 560, 560);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void switchToQ1(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q2.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load(), 560, 560);
         stage.setScene(scene);
