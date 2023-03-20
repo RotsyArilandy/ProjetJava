@@ -70,7 +70,7 @@ public class tabController implements Initializable {
             champTournoi.setText(s);
 
 
-            }
+        }
 
     }
 

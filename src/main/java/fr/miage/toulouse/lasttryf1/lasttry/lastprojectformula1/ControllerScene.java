@@ -95,6 +95,13 @@ public class ControllerScene {
                 System.out.println(e.getMessage());
             }
         }
+    public void switchToListeTournoi(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Tournoi.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
+    }
     }
 
 

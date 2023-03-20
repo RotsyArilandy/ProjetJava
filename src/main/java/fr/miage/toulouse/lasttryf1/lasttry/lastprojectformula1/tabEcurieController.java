@@ -131,7 +131,7 @@ public class tabEcurieController implements Initializable {
             while ((line = reader.readLine()) != null)
                 json += line;
 
-           JSONArray data = new JSONArray(json);
+            JSONArray data = new JSONArray(json);
             for(int i=0; i < data.length(); i++)
             {
                 JSONObject object = data.getJSONObject(i);
