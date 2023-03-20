@@ -19,13 +19,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.*;
 import java.net.URL;
 import java.nio.CharBuffer;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -65,6 +66,9 @@ public class tabController implements Initializable {
 
     @FXML
     private DatePicker inputDateFin;
+
+    private ArrayList<GrandPrix> _grandPrix;
+    private static final String _dataPath = "data/ecurie.json";
 
 
     //A voir pourquoi ça ne s'affiche pas enconre
@@ -135,6 +139,72 @@ public class tabController implements Initializable {
         stage.show();
     }
 
+    public void setGP(ActionEvent event )
+    {
+        BufferedReader reader = null;
+        String json = "";
 
+        try
+        {
+            _grandPrix = new ArrayList<>();
+            reader = new BufferedReader(new FileReader(_dataPath));
+            String line;
+            while ((line = reader.readLine()) != null)
+                json += line;
 
+            JSONArray data = new JSONArray(json);
+            for(int i=0; i < data.length(); i++)
+            {
+                JSONObject object = data.getJSONObject(i);
+                _grandPrix.add(new GrandPrix(
+                        object.getString("name"),
+                        object.getString("pays"),
+                        LocalDate.parse(object.getString("date"))
+                ));
+            }
+            setGrandPrixTableView();
+
+        } catch (Exception e) {
+            // alert "erreur sur la lecture du fichier
+            System.out.println("erreur sur la lecture du fichier" + e.getMessage());
+        }
+        finally {
+            if(reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
+    private void setGrandPrixTableView()  {
+        ObservableList <GrandPrix> obGrandPrix = tableView.getItems();
+
+        for (GrandPrix gp: _grandPrix)
+            obGrandPrix.add(gp);
+
+        tableView.setItems(obGrandPrix);
+    }
+    void save (ActionEvent event ){
+        String [] data = new String[_grandPrix.size()];
+        for (int i = 0; i < data.length; i++) {
+            GrandPrix gp = _grandPrix.get(i);
+            JSONObject obj = new JSONObject(gp);
+            data[i] = obj.toString();
+        }
+        try {
+            String finalString = "[";
+            finalString += String.join(",", data);
+            finalString+="]";
+            File file = new File(_dataPath);
+            file.createNewFile();
+            FileWriter fw = new FileWriter(file);
+            fw.write(finalString);
+            fw.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
