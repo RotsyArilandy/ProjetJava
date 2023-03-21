@@ -26,10 +26,8 @@ import java.io.*;
 import java.net.URL;
 import java.nio.CharBuffer;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
+
 
 public class tabController implements Initializable {
     private Stage stage;
@@ -179,32 +177,71 @@ public class tabController implements Initializable {
         }
     }
 
-    private void setGrandPrixTableView()  {
-        ObservableList <GrandPrix> obGrandPrix = tableView.getItems();
+    private void setGrandPrixTableView() {
+        ObservableList<GrandPrix> obGrandPrix = tableView.getItems();
 
-        for (GrandPrix gp: _grandPrix)
+        for (GrandPrix gp : _grandPrix)
             obGrandPrix.add(gp);
 
         tableView.setItems(obGrandPrix);
     }
-    void save (ActionEvent event ){
-        String [] data = new String[_grandPrix.size()];
-        for (int i = 0; i < data.length; i++) {
-            GrandPrix gp = _grandPrix.get(i);
-            JSONObject obj = new JSONObject(gp);
-            data[i] = obj.toString();
-        }
+
+
+    @FXML
+    private void handleSaveButton(ActionEvent event) {
+        ObservableList<GrandPrix> data = tableView.getItems();
+
+// Définir le chemin d'accès au fichier CSV
+        String filePath = "data/grand_prix_data.csv";
+
+// Écrire les données dans le fichier CSV
         try {
-            String finalString = "[";
-            finalString += String.join(",", data);
-            finalString+="]";
-            File file = new File(_dataPath);
-            file.createNewFile();
-            FileWriter fw = new FileWriter(file);
-            fw.write(finalString);
-            fw.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            FileWriter fileWriter = new FileWriter(filePath);
+
+
+
+            // Écrire les données de chaque ligne
+            for (GrandPrix grandPrix : data) {
+                StringBuilder rowText = new StringBuilder();
+                rowText.append(grandPrix.getName()).append(",");
+                rowText.append(grandPrix.getPays()).append(",");
+                rowText.append(grandPrix.getDate().toString()).append("\n");
+                fileWriter.write(rowText.toString());
+            }
+
+            fileWriter.close();
+            System.out.println("Les données de la TableView ont été sauvegardées dans le fichier " + filePath);
+        } catch (IOException e) {
+            System.out.println("Erreur lors de l'écriture des données dans le fichier " + filePath);
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleLoadButton(ActionEvent event) {
+        ObservableList<GrandPrix> data = tableView.getItems();
+
+        // Définir le chemin d'accès au fichier CSV
+        String filePath = "data/grand_prix_data.csv";
+
+        // Lire les données à partir du fichier CSV
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                String name = parts[0];
+                String pays = parts[1];
+                LocalDate date = LocalDate.parse(parts[2]);
+
+                // Ajouter les données à la TableView
+                data.add(new GrandPrix(name, pays, date));
+            }
+            reader.close();
+            System.out.println("Les données du fichier " + filePath + " ont été chargées dans la TableView.");
+        } catch (IOException e) {
+            System.out.println("Erreur lors de la lecture des données à partir du fichier " + filePath);
+            e.printStackTrace();
         }
     }
 }
