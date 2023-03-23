@@ -9,14 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONString;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+
 import java.io.*;
 import java.net.URL;
 import java.time.LocalDate;
@@ -49,8 +48,11 @@ public class tabEcurieController implements Initializable {
     @FXML
     private TextField pilote2Input;
 
+    @FXML
+    private Button Suivant;
+
     private ArrayList<Ecurie> _ecuries;
-    private static final String _dataPath = "data/ecurie.json";
+    private Tournoi _tournoi;
 
     int nbClick = 0;
 
@@ -67,7 +69,8 @@ public class tabEcurieController implements Initializable {
     }
 
     @FXML
-    void submit (ActionEvent event){
+    void submit (ActionEvent e){
+
         if (nbClick < 10){
             Ecurie E = new Ecurie(ecurieInput.getText(),(pilote1Input.getText()), pilote2Input.getText());
             ObservableList <Ecurie> obEcurie= tableView.getItems();
@@ -83,81 +86,20 @@ public class tabEcurieController implements Initializable {
         tableView.getItems().remove(selectedID);
     }
 
-    @FXML
-    void save (ActionEvent event ){
-        String [] data = new String[_ecuries.size()];
-        for (int i = 0; i < data.length; i++) {
-            Ecurie e = _ecuries.get(i);
-            JSONObject obj = new JSONObject(e);
-            data[i] = obj.toString();
+   /** @FXML
+    void recupDonnees (ActionEvent event){
+        for (int i = 0; i< 10; i++){
+            ecurie x = _ecuries.get(i);
+            tableView.
         }
-        try {
-            String finalString = "[";
-            finalString += String.join(",", data);
-            finalString+="]";
-            File file = new File(_dataPath);
-            file.createNewFile();
-            FileWriter fw = new FileWriter(file);
-            fw.write(finalString);
-            fw.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    public void switchToQ1(ActionEvent event) throws IOException {
+    }**/
+
+    public void switchToTournois(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load(), 560, 560);
         stage.setScene(scene);
         stage.show();
-    }
-    public void switchToTournois(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("createTournoi.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader.load(), 560, 560);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void setEcuries(ActionEvent event )
-    {
-        BufferedReader reader = null;
-        String json = "";
-
-        try
-        {
-            _ecuries = new ArrayList<>();
-            reader = new BufferedReader(new FileReader(_dataPath));
-            String line;
-            while ((line = reader.readLine()) != null)
-                json += line;
-
-            JSONArray data = new JSONArray(json);
-            for(int i=0; i < data.length(); i++)
-            {
-                JSONObject object = data.getJSONObject(i);
-                _ecuries.add(new Ecurie(
-                        object.getString("ecurie"),
-                        object.getString("pilote1"),
-                        object.getString("pilote2")
-                ));
-            }
-            setEcurieTableView();
-
-        } catch (Exception e) {
-            // alert "erreur sur la lecture du fichier
-            System.out.println("erreur sur la lecture du fichier" + e.getMessage());
-        }
-        finally {
-            if(reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
     }
 
     private void setEcurieTableView()  {
@@ -169,16 +111,29 @@ public class tabEcurieController implements Initializable {
         tableView.setItems(obEcurie);
     }
 
-
-    public void switchQ1(ActionEvent event) throws IOException{
+    public void switchToQ1(ActionEvent event) throws IOException{
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load(), 560, 560);
         stage.setScene(scene);
+        ControllerQ1 q1Controller = fxmlLoader.getController();
+        _tournoi.ecuries = _ecuries;
+        q1Controller.setTournoi(_tournoi);
+        Tournoi actuel = Tournoi.GetTournoiByCode(_tournoi.codeTournoi);
+        if(actuel != null) {
+            // si la liste des écuries est vide, on initialise
+            if (actuel.ecuries == null)
+                actuel.ecuries = new ArrayList<>();
 
+            actuel.ecuries.addAll(_ecuries);
+            ArrayList<Tournoi> tournois = Tournoi.SetTournoiInList(actuel);
+            Tournoi.WriteData(tournois);
+        }
         stage.show();
     }
-
-
+    public void setTournoi(Tournoi tournoi)
+    {
+        _tournoi = tournoi;
+    }
 }

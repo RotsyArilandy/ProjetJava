@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -14,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1.ControllerQ1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1.ControllerQ1">
    <top>
       <Text layoutX="221.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qualification 1" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <font>
@@ -25,32 +22,57 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="287.0" layoutY="10.0" prefHeight="206.0" prefWidth="308.0">
+            <TableView layoutX="248.0" layoutY="14.0" prefHeight="287.0" prefWidth="343.0">
               <columns>
-                <TableColumn prefWidth="160.66668701171875" text="Pilote" />
-                <TableColumn prefWidth="141.33331298828125" text="Temps" />
+                <TableColumn prefWidth="128.00006103515625" text="Pilote" />
+                <TableColumn prefWidth="174.6666259765625" text="Temps" />
               </columns>
             </TableView>
-            <VBox layoutX="8.0" layoutY="27.0" prefHeight="40.0" prefWidth="257.0">
+            <VBox layoutX="11.0" layoutY="11.0" prefHeight="347.0" prefWidth="101.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="289.0" text="Ajouter les pilotes" />
+                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 1" />
+                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 2" />
+                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 3" />
+                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 4" />
+                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 5" />
+                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 6" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 7" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote8" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 9" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 10" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 11" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 12" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 13" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 14" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 15" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 16" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 17" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 18" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 19" />
+                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 20" />
                </children>
             </VBox>
-            <VBox layoutX="6.0" layoutY="97.0" prefHeight="78.0" prefWidth="262.0">
+            <Button layoutX="197.0" layoutY="143.0" mnemonicParsing="false" text="Trier" />
+            <Button layoutX="500.0" layoutY="313.0" mnemonicParsing="false" onAction="#switchToQ2" prefHeight="25.0" prefWidth="68.0" text="Suivant" />
+            <Button layoutX="237.0" layoutY="313.0" mnemonicParsing="false" text="Precédent" />
+            <VBox layoutX="102.0" layoutY="7.0" prefHeight="335.0" prefWidth="79.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter le temps effectuer en seconde :">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font>
-                  </Text>
-                  <TextField text="1000" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="340.0" text="Valider" />
+                  <TextField />
+                  <TextField />
+                  <TextField />
+                  <TextField />
+                  <TextField />
+                  <TextField />
+                  <TextField />
+                  <TextField />
+                  <TextField />
+                  <TextField />
+                  <TextField />
+                  <TextField />
+                  <TextField />
+                  <TextField prefHeight="6.0" prefWidth="101.0" />
                </children>
             </VBox>
-            <Button layoutX="360.0" layoutY="226.0" mnemonicParsing="false" text="Trier" />
-            <Button layoutX="450.0" layoutY="226.0" mnemonicParsing="false" text="Supprimer" />
-            <Button layoutX="319.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchToQ2" prefHeight="25.0" prefWidth="68.0" text="Suivant" />
-            <Button layoutX="190.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchToEcurie" text="Precédent" />
          </children>
       </AnchorPane>
    </center>

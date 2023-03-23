@@ -1,9 +1,12 @@
 package fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1;
 
+import java.security.Timestamp;
 import java.util.Date;
 
 public class Pilote {
     private String nomPilote;
+
+    public Timestamp temps;
    // private String nationalite;
     //private Date ddn; //La date de naissance du pilote
 

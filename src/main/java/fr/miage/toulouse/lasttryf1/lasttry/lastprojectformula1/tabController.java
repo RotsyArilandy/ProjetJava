@@ -8,26 +8,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.nio.CharBuffer;
 import java.time.LocalDate;
-import java.util.*;
-
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class tabController implements Initializable {
     private Stage stage;
@@ -48,6 +44,9 @@ public class tabController implements Initializable {
     private TextField nomInput;
 
     @FXML
+    private TextField codeInput;
+
+    @FXML
     private TextField paysInput;
 
     @FXML
@@ -65,9 +64,8 @@ public class tabController implements Initializable {
     @FXML
     private DatePicker inputDateFin;
 
-    private ArrayList<GrandPrix> _grandPrix;
-    private static final String _dataPath = "data/ecurie.json";
-
+    private Tournoi _tournoi;
+    private ArrayList<GrandPrix> _lstGrandPrix;
 
     //A voir pourquoi ça ne s'affiche pas enconre
     public void recupNomTournoi(){
@@ -80,7 +78,7 @@ public class tabController implements Initializable {
             champTournoi.setText(s);
 
 
-        }
+            }
 
     }
 
@@ -104,13 +102,24 @@ public class tabController implements Initializable {
 
     @FXML
     void submit (ActionEvent event){
-        GrandPrix GP = new GrandPrix(nomInput.getText(),paysInput.getText(), dateInput.getValue());
-        ObservableList<GrandPrix> X = tableView.getItems();
-        X.add(GP);
+        if ( (nomInput.getText() == null) || (paysInput.getText() == null) || (dateInput.getValue() == null ) ){
+            showAlert(Alert.AlertType.ERROR, "Tous  les champs sont obligatoires");
+            return;
+        }
+        GrandPrix gp =new GrandPrix(nomInput.getText(),paysInput.getText(), dateInput.getValue());
 
-        tableView.setItems(X);
+        ObservableList<GrandPrix> _listesGrandPrix = tableView.getItems();
+        _listesGrandPrix.add(gp);
+
+        tableView.setItems(_listesGrandPrix);
         nomInput.setText("");
         paysInput.setText("");
+        dateInput.setValue(null);
+
+        if(_lstGrandPrix == null)
+            _lstGrandPrix = new ArrayList<>();
+
+        _lstGrandPrix.add(gp);
     }
 
     @FXML
@@ -134,114 +143,27 @@ public class tabController implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load(), 560, 560);
         stage.setScene(scene);
+
+        tabEcurieController ecurieController = fxmlLoader.getController();
+        ecurieController.setTournoi(_tournoi);
+
+        Tournoi actuel = Tournoi.GetTournoiByCode(_tournoi.codeTournoi);
+        if(actuel != null) {
+            // si la liste des GP est vide, on initialise
+            if (actuel.tabGrandPrix == null)
+                actuel.tabGrandPrix = new ArrayList<>();
+
+            actuel.tabGrandPrix.addAll(_lstGrandPrix);
+            ArrayList<Tournoi> tournois = Tournoi.SetTournoiInList(actuel);
+            System.out.println(tournois.size());
+            Tournoi.WriteData(tournois);
+        }
+
         stage.show();
     }
 
-    public void setGP(ActionEvent event )
+    public void setTournoi(Tournoi tournoi)
     {
-        BufferedReader reader = null;
-        String json = "";
-
-        try
-        {
-            _grandPrix = new ArrayList<>();
-            reader = new BufferedReader(new FileReader(_dataPath));
-            String line;
-            while ((line = reader.readLine()) != null)
-                json += line;
-
-            JSONArray data = new JSONArray(json);
-            for(int i=0; i < data.length(); i++)
-            {
-                JSONObject object = data.getJSONObject(i);
-                _grandPrix.add(new GrandPrix(
-                        object.getString("name"),
-                        object.getString("pays"),
-                        LocalDate.parse(object.getString("date"))
-                ));
-            }
-            setGrandPrixTableView();
-
-        } catch (Exception e) {
-            // alert "erreur sur la lecture du fichier
-            System.out.println("erreur sur la lecture du fichier" + e.getMessage());
-        }
-        finally {
-            if(reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-    }
-
-    private void setGrandPrixTableView() {
-        ObservableList<GrandPrix> obGrandPrix = tableView.getItems();
-
-        for (GrandPrix gp : _grandPrix)
-            obGrandPrix.add(gp);
-
-        tableView.setItems(obGrandPrix);
-    }
-
-
-    @FXML
-    private void handleSaveButton(ActionEvent event) {
-        ObservableList<GrandPrix> data = tableView.getItems();
-
-// Définir le chemin d'accès au fichier CSV
-        String filePath = "data/grand_prix_data.csv";
-
-// Écrire les données dans le fichier CSV
-        try {
-            FileWriter fileWriter = new FileWriter(filePath);
-
-
-
-            // Écrire les données de chaque ligne
-            for (GrandPrix grandPrix : data) {
-                StringBuilder rowText = new StringBuilder();
-                rowText.append(grandPrix.getName()).append(",");
-                rowText.append(grandPrix.getPays()).append(",");
-                rowText.append(grandPrix.getDate().toString()).append("\n");
-                fileWriter.write(rowText.toString());
-            }
-
-            fileWriter.close();
-            System.out.println("Les données de la TableView ont été sauvegardées dans le fichier " + filePath);
-        } catch (IOException e) {
-            System.out.println("Erreur lors de l'écriture des données dans le fichier " + filePath);
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handleLoadButton(ActionEvent event) {
-        ObservableList<GrandPrix> data = tableView.getItems();
-
-        // Définir le chemin d'accès au fichier CSV
-        String filePath = "data/grand_prix_data.csv";
-
-        // Lire les données à partir du fichier CSV
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                String name = parts[0];
-                String pays = parts[1];
-                LocalDate date = LocalDate.parse(parts[2]);
-
-                // Ajouter les données à la TableView
-                data.add(new GrandPrix(name, pays, date));
-            }
-            reader.close();
-            System.out.println("Les données du fichier " + filePath + " ont été chargées dans la TableView.");
-        } catch (IOException e) {
-            System.out.println("Erreur lors de la lecture des données à partir du fichier " + filePath);
-            e.printStackTrace();
-        }
+        _tournoi = tournoi;
     }
 }

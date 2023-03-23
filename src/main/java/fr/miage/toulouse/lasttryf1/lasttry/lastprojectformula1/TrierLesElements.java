@@ -2,7 +2,7 @@ package fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import java.util.Arrays;
-public class TrierLesElements {
+/**public class TrierLesElements {
     TableView<Temps> tableView = new TableView<Temps>();
     ObservableList<Temps> items = tableView.getItems();
 
@@ -12,4 +12,4 @@ public class TrierLesElements {
             System.out.println(Temps[i]);
         }
     }
-}
+}**/

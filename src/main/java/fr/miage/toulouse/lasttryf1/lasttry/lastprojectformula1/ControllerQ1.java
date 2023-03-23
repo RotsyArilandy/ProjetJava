@@ -11,7 +11,7 @@ import java.io.IOException;
 public class ControllerQ1 {
     private Stage stage;
     private Scene scene;
-
+    private Tournoi _tournoi;
     public void switchToQ2(ActionEvent event) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q2.fxml"));
@@ -20,13 +20,10 @@ public class ControllerQ1 {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToEcurie(ActionEvent event) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Ecurie.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader.load(), 560, 560);
-        stage.setScene(scene);
-        stage.show();
+    public void setTournoi(Tournoi tournoi)
+    {
+        _tournoi = tournoi;
     }
 }
     /**

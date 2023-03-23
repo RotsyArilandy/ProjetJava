@@ -9,7 +9,6 @@ public class GrandPrix {
     private String pays;
     private LocalDate date;
 
-
     public GrandPrix(String name, String pays, LocalDate date){
         this.name = name;
         this.pays = pays;
