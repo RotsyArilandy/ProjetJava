@@ -58,8 +58,8 @@
             <Button layoutX="297.0" layoutY="209.0" mnemonicParsing="false" onAction="#removeGrandPrix" prefHeight="25.0" prefWidth="285.0" text="Supprimer" />
             <Button layoutX="121.0" layoutY="280.0" mnemonicParsing="false" onAction="#switchToCalendrier" prefHeight="25.0" prefWidth="123.0" text="Précédent" />
             <Button layoutX="378.0" layoutY="278.0" mnemonicParsing="false" onAction="#switchToEcurie" prefHeight="25.0" prefWidth="123.0" text="Suivant" />
-            <Button layoutX="499.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleSaveButton" text="Sauvegarder" />
-            <Button layoutX="297.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Charger les éléments" />
+            <Button layoutX="499.0" layoutY="240.0" mnemonicParsing="false" text="Sauvegarder" />
+            <Button layoutX="297.0" layoutY="240.0" mnemonicParsing="false" onAction="#setGP" text="Charger les éléments" />
          </children>
       </AnchorPane>
    </left>
