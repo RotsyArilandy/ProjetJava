@@ -20,12 +20,4 @@ public class ControllerQ2 {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToQ1(ActionEvent event) throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q1.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader.load(), 560, 560);
-        stage.setScene(scene);
-        stage.show();
-    }
 }
