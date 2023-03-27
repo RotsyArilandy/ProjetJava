@@ -1,5 +1,7 @@
 package fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1;
 
+import org.json.JSONObject;
+
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -38,4 +40,23 @@ public class GrandPrix {
     public void setDate( LocalDate d) {
         this.date = d;
     }
+
+    public JSONObject GetJSONObject(){
+        if(this == null)
+            return new JSONObject();
+
+        try
+        {
+            JSONObject objet = new JSONObject();
+            objet = objet.put("name", this.name);
+            objet = objet.put("pays", this.pays);
+            objet = objet.put("date", this.date);
+            return objet;
+        }
+        catch (Exception e)
+        {
+            return new JSONObject();
+        }
+    }
 }
+

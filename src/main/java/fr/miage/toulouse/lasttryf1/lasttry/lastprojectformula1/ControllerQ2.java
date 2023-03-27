@@ -6,13 +6,11 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class ControllerQ2 {
     private Stage stage;
     private Scene scene;
 
-    public void switchToQ3(ActionEvent event) throws IOException {
+    public void switchToQ3(ActionEvent event) throws Exception {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q3.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -28,50 +27,13 @@
                 <TableColumn prefWidth="174.6666259765625" text="Temps" />
               </columns>
             </TableView>
-            <VBox layoutX="11.0" layoutY="11.0" prefHeight="347.0" prefWidth="101.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 1" />
-                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 2" />
-                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 3" />
-                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 4" />
-                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 5" />
-                  <Label prefHeight="17.0" prefWidth="75.0" text="pilote 6" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 7" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote8" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 9" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 10" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 11" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 12" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 13" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 14" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 15" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 16" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 17" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 18" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 19" />
-                  <Label prefHeight="44.0" prefWidth="75.0" text="pilote 20" />
-               </children>
+            <VBox fx:id="container" layoutX="11.0" layoutY="11.0" prefHeight="347.0" prefWidth="101.0">
+
             </VBox>
             <Button layoutX="197.0" layoutY="143.0" mnemonicParsing="false" text="Trier" />
             <Button layoutX="500.0" layoutY="313.0" mnemonicParsing="false" onAction="#switchToQ2" prefHeight="25.0" prefWidth="68.0" text="Suivant" />
             <Button layoutX="237.0" layoutY="313.0" mnemonicParsing="false" text="Precédent" />
             <VBox layoutX="102.0" layoutY="7.0" prefHeight="335.0" prefWidth="79.0">
-               <children>
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField prefHeight="6.0" prefWidth="101.0" />
-               </children>
             </VBox>
          </children>
       </AnchorPane>

@@ -148,8 +148,8 @@ public class Tournoi {
                     JSONObject gpObject = listEcuriesSousFormeArray.getJSONObject(j);
                     Ecurie ecurie = new Ecurie(
                             gpObject.getString("ecurie"),
-                            gpObject.getString("pilote1"),
-                            gpObject.getString("pilote2")
+                            (Pilote) gpObject.get("pilote1"),
+                            (Pilote)gpObject.get("pilote2")
                     );
                     tour.ecuries.add(ecurie);
                 }

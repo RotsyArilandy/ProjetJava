@@ -1,5 +1,7 @@
 package fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,13 +13,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONString;
 
 import java.io.*;
 import java.net.URL;
+import java.security.cert.PolicyNode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +46,8 @@ public class tabEcurieController implements Initializable {
 
     @FXML
     private TextField ecurieInput;
-
+    @FXML
+    private VBox container;
     @FXML
     private TextField pilote1Input;
 
@@ -64,15 +70,25 @@ public class tabEcurieController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ecurie.setCellValueFactory(new PropertyValueFactory<Ecurie,String>("ecurie"));
-        pilote1.setCellValueFactory(new PropertyValueFactory<Ecurie,String>("pilote1"));
-        pilote2.setCellValueFactory(new PropertyValueFactory<Ecurie,String>("pilote2"));
+        pilote1.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ecurie, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Ecurie, String> ecu) {
+                return new SimpleStringProperty(ecu.getValue().getPilote1().getNomPilote());
+            }
+        });
+        pilote2.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ecurie, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Ecurie, String> ecu) {
+                return new SimpleStringProperty(ecu.getValue().getPilote2().getNomPilote());
+            }
+        });
     }
 
     @FXML
     void submit (ActionEvent e){
 
         if (nbClick < 10){
-            Ecurie E = new Ecurie(ecurieInput.getText(),(pilote1Input.getText()), pilote2Input.getText());
+            Ecurie E = new Ecurie(ecurieInput.getText(),(new Pilote(pilote1Input.getText())), (new Pilote(pilote2Input.getText())));
             ObservableList <Ecurie> obEcurie= tableView.getItems();
             obEcurie.add(E);
             tableView.setItems(obEcurie);
@@ -86,12 +102,12 @@ public class tabEcurieController implements Initializable {
         tableView.getItems().remove(selectedID);
     }
 
-   /** @FXML
+    /** @FXML
     void recupDonnees (ActionEvent event){
-        for (int i = 0; i< 10; i++){
-            ecurie x = _ecuries.get(i);
-            tableView.
-        }
+    for (int i = 0; i< 10; i++){
+    ecurie x = _ecuries.get(i);
+    tableView.
+    }
     }**/
 
     public void switchToTournois(ActionEvent event) throws IOException {
@@ -135,5 +151,20 @@ public class tabEcurieController implements Initializable {
     public void setTournoi(Tournoi tournoi)
     {
         _tournoi = tournoi;
+        //Créer un arraylist de pilote
+        ArrayList <Pilote> _pilote = new ArrayList<>();
+        ArrayList<Object> labels = new ArrayList<>();
+        for( int i = 0; i < _tournoi.ecuries.size(); i++){
+            _pilote.add(_tournoi.ecuries.get(i).getPilote1());
+            _pilote.add(_tournoi.ecuries.get(i).getPilote2());
+        }
+        for (int i = 1; i <= _pilote.size(); i++) {
+            Label label = new Label("Label "+i);
+            labels.add(label);
+            container.getChildren().add(label);
+            label.setText(_pilote.get(i).getNomPilote());
+        }
+
+
     }
 }
