@@ -1,14 +1,21 @@
 package fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.net.URL;
 import java.time.LocalDate;
 
 import java.io.IOException;
@@ -17,18 +24,37 @@ import java.util.ArrayList;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import javafx.scene.control.TextField;
 
-public class ControllerQ1 {
+public class ControllerQ1 implements Initializable{
     private Stage stage;
     private Scene scene;
 
+    public TableView<Pilote> tableView;
+
+    @FXML
+    public TableColumn<Pilote,String> pilote;
+
+    @FXML
+    public  TableColumn<Pilote,Long> temps;
+
     @FXML
     private VBox container;
+    ArrayList<Pilote> _pilote = new ArrayList<>();
+    ArrayList<Object> labels = new ArrayList<>();
+    ArrayList<TextField> champs = new ArrayList<>();
 
     private Tournoi _tournoi;
+
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        pilote.setCellValueFactory(new PropertyValueFactory<Pilote,String>("Pilote"));
+        temps.setCellValueFactory(new PropertyValueFactory<Pilote,Long>("Temps"));
+
+    }
     public void switchToQ2(ActionEvent event) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q2.fxml"));
@@ -38,20 +64,11 @@ public class ControllerQ1 {
         stage.show();
     }
 
-    /**public static long convertToLong(TextField textField) {
-        String inputText = textField.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm:ss");
-        LocalDateTime localDateTime = LocalDateTime.parse(inputText, formatter);
-        Instant instant = localDateTime.toInstant(java.time.ZoneOffset.UTC);
-        return instant.getEpochSecond();
-    }**/
+
         public void setTournoi(Tournoi tournoi)
     {
             _tournoi = tournoi;
 
-            ArrayList<Pilote> _pilote = new ArrayList<>();
-            ArrayList<Object> labels = new ArrayList<>();
-            ArrayList<Object> champs = new ArrayList<>();
             //Créer un arraylist de pilote
             for( int i = 0; i < _tournoi.ecuries.size(); i++){
                 _pilote.add(_tournoi.ecuries.get(i).getPilote1());
@@ -68,6 +85,32 @@ public class ControllerQ1 {
 
         }
     }
+    /**public static long convertToLong(TextField textField) {
+        String inputText = textField.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.parse(inputText, formatter);
+        Instant instant = localDateTime.toInstant(java.time.ZoneOffset.UTC);
+        return instant.getEpochSecond();
+    }**/
+
+        public void trier() {
+            //lien entre le textfiled et les pilote
+            for (int i = 0; i < _pilote.size(); i++) {
+                _pilote.get(i).temps = parseLong(champs.get(i));
+            }
+            Collections.sort(_pilote);
+            ObservableList<Pilote> obEcurie = tableView.getItems();
+            obEcurie.clear();
+            for (int i = 0; i < _pilote.size(); i++) {
+                obEcurie.add(_pilote.get(i));
+            }
+            tableView.setItems(obEcurie);
+        }
+
+
+
+
+
         public static Long parseLong(TextField textField) {
             String inputText = textField.getText();
             try {
@@ -77,6 +120,7 @@ public class ControllerQ1 {
             }
 
     }
+
 
 }
     /**

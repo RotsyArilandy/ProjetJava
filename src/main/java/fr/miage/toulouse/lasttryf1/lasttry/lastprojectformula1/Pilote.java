@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import java.security.Timestamp;
 
-public class Pilote {
+public class Pilote  implements Comparable<Pilote>{
     private String nomPilote;
     public long temps;
    // private String nationalite;
@@ -52,5 +52,15 @@ public class Pilote {
         {
             return new JSONObject();
         }
+    }
+
+    @Override
+    public int compareTo(Pilote p2) {
+        //tri desc
+        if(p2.temps > this.temps){
+            return 1;}
+        if (p2.temps == this.temps){
+        return 0;}
+        return -1;
     }
 }
