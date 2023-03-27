@@ -151,19 +151,7 @@ public class tabEcurieController implements Initializable {
     public void setTournoi(Tournoi tournoi)
     {
         _tournoi = tournoi;
-        //Créer un arraylist de pilote
-        ArrayList <Pilote> _pilote = new ArrayList<>();
-        ArrayList<Object> labels = new ArrayList<>();
-        for( int i = 0; i < _tournoi.ecuries.size(); i++){
-            _pilote.add(_tournoi.ecuries.get(i).getPilote1());
-            _pilote.add(_tournoi.ecuries.get(i).getPilote2());
-        }
-        for (int i = 1; i <= _pilote.size(); i++) {
-            Label label = new Label("Label "+i);
-            labels.add(label);
-            container.getChildren().add(label);
-            label.setText(_pilote.get(i).getNomPilote());
-        }
+
 
 
     }

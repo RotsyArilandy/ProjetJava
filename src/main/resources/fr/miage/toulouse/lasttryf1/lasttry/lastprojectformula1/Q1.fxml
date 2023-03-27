@@ -28,7 +28,7 @@
               </columns>
             </TableView>
             <VBox fx:id="container" layoutX="11.0" layoutY="11.0" prefHeight="347.0" prefWidth="101.0">
-
+               <children></children>
             </VBox>
             <Button layoutX="197.0" layoutY="143.0" mnemonicParsing="false" text="Trier" />
             <Button layoutX="500.0" layoutY="313.0" mnemonicParsing="false" onAction="#switchToQ2" prefHeight="25.0" prefWidth="68.0" text="Suivant" />

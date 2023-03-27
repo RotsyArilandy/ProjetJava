@@ -1,16 +1,24 @@
 package fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ControllerQ1 {
     private Stage stage;
     private Scene scene;
+
+    @FXML
+    private VBox container;
+
     private Tournoi _tournoi;
     public void switchToQ2(ActionEvent event) throws IOException {
 
@@ -24,6 +32,19 @@ public class ControllerQ1 {
     public void setTournoi(Tournoi tournoi)
     {
         _tournoi = tournoi;
+        //Créer un arraylist de pilote
+        ArrayList<Pilote> _pilote = new ArrayList<>();
+        ArrayList<Object> labels = new ArrayList<>();
+        for( int i = 0; i < _tournoi.ecuries.size(); i++){
+            _pilote.add(_tournoi.ecuries.get(i).getPilote1());
+            _pilote.add(_tournoi.ecuries.get(i).getPilote2());
+        }
+        for (int i = 0; i < _pilote.size(); i++) {
+            Label label = new Label("Label "+i);
+            labels.add(label);
+            container.getChildren().add(label);
+            label.setText(_pilote.get(i).getNomPilote());
+        }
     }
 }
     /**
