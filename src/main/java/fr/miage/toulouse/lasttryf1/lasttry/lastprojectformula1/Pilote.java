@@ -6,7 +6,7 @@ import java.security.Timestamp;
 
 public class Pilote {
     private String nomPilote;
-    public Timestamp temps;
+    public long temps;
    // private String nationalite;
     //private Date ddn; //La date de naissance du pilote
 
@@ -19,6 +19,11 @@ public class Pilote {
         //this.nationalite= nat;
         //this.ddn = d;
    // }
+
+
+    public void setTemps(long temps) {
+        this.temps = temps;
+    }
 
     public String getNomPilote() {
         return nomPilote;
