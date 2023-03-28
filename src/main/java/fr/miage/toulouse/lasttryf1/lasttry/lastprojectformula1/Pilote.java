@@ -57,10 +57,10 @@ public class Pilote  implements Comparable<Pilote>{
     @Override
     public int compareTo(Pilote p2) {
         //tri desc
-        if(p2.temps > this.temps){
-            return 1;}
-        if (p2.temps == this.temps){
-        return 0;}
-        return -1;
+        if (this.temps < p2.temps)
+            return -1;
+        if (p2.temps == this.temps)
+            return 0;
+        return 1;
     }
 }
