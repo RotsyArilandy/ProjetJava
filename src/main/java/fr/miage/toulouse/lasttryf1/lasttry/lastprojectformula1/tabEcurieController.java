@@ -118,6 +118,9 @@ public class tabEcurieController implements Initializable {
         stage.show();
     }
 
+    /**
+     Cette méthode remplit la TableView des écuries avec les données de la liste des écuries.
+     */
     private void setEcurieTableView()  {
         ObservableList <Ecurie> obEcurie = tableView.getItems();
 
@@ -126,7 +129,12 @@ public class tabEcurieController implements Initializable {
 
         tableView.setItems(obEcurie);
     }
-
+    /**
+     La méthode switchToQ1 charge la page Q1.fxml dans la fenêtre principale
+     Initialise le contrôleur associé.
+     Elle met également à jour l'état actuel du tournoi en y ajoutant les écuries sélectionnées.
+     @throws IOException si une erreur se produit lors du chargement de la page FXML
+     */
     public void switchToQ1(ActionEvent event) throws IOException{
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q1.fxml"));
