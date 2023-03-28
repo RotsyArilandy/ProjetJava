@@ -151,8 +151,5 @@ public class tabEcurieController implements Initializable {
     public void setTournoi(Tournoi tournoi)
     {
         _tournoi = tournoi;
-
-
-
     }
 }
