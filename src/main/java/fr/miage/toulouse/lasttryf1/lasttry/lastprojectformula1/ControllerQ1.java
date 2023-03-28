@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.io.IOException;
 import java.security.Timestamp;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -48,7 +49,8 @@ public class ControllerQ1 implements Initializable{
     ArrayList<Object> labels = new ArrayList<>();
     ArrayList<TextField> champs = new ArrayList<>();
 
-    private Tournoi _tournoi;
+    public Tournoi _tournoi;
+
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,6 +69,20 @@ public class ControllerQ1 implements Initializable{
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load(), 560, 560);
         stage.setScene(scene);
+        ControllerQ2 q2Controller = fxmlLoader.getController();
+        this._tournoi= tabEcurieController._tournoi;
+        this._tournoi.ecuries = tabEcurieController._ecuries;
+        q2Controller.setTournoi(this._tournoi);
+        Tournoi actuel = Tournoi.GetTournoiByCode(this._tournoi.codeTournoi);
+        if(actuel != null) {
+            // si la liste des écuries est vide, on initialise
+            if (actuel.ecuries == null)
+                actuel.ecuries = new ArrayList<>();
+
+            actuel.ecuries.addAll(tabEcurieController._ecuries);
+            ArrayList<Tournoi> tournois = Tournoi.SetTournoiInList(actuel);
+            Tournoi.WriteData(tournois);
+        }
         stage.show();
     }
 
@@ -96,9 +112,10 @@ public class ControllerQ1 implements Initializable{
             for (int i = 0; i < _pilote.size(); i++) {
                 _pilote.get(i).temps = parseLong(champs.get(i));
             }
-            Collections.sort(_pilote);
+            Comparator<Pilote> comparator = Comparator.comparing(Pilote::getTemps);
+
+            Collections.sort(_pilote, comparator);
             ObservableList<Pilote> obEcurie = tableView.getItems();
-            obEcurie.clear();
             for (int i = 0; i < _pilote.size(); i++) {
                 obEcurie.add(_pilote.get(i));
             }

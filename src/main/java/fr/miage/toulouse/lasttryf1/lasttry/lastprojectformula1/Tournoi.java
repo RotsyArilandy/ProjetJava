@@ -15,6 +15,10 @@ public class Tournoi {
     public ArrayList<GrandPrix> tabGrandPrix;
     public LocalDate DateDeb;
     public LocalDate DateFin;
+    /**
+     *  constructeur de tournoi
+     */
+
     public Tournoi(String nom , String code, LocalDate d1, LocalDate d2) {
         this.nomTournoi = nom;
         this.codeTournoi = code;
@@ -24,15 +28,25 @@ public class Tournoi {
         this.DateFin = d2;
     }
 
+    /**
+     *  pour ajouter une écurie
+      */
     public void AjouterEcurie(Ecurie e){
 
         ecuries.add(e);
     }
 
+    /**
+     * pour supprimer une écurie du tableau
+     */
     public void SuppEcurie(Ecurie e){
         ecuries.remove(e);
     }
 
+    /**
+     *  Retourne un objet JSON représentant une instance de Tournoi.
+     *
+     */
     public JSONObject GetJSONObject(){
         if(this == null)
             return new JSONObject();
@@ -54,7 +68,11 @@ public class Tournoi {
             return new JSONObject();
         }
     }
-
+    /**
+     * Écrit une liste d'instances de Tournoi dans un fichier JSON.
+     *
+     * @param tournois une liste d'instances de Tournoi à écrire dans le fichier.
+     */
     public static void WriteData(ArrayList<Tournoi> tournois){
         // on écrase le contenu du fichier json
         String [] result = new String[tournois.size()];
@@ -77,6 +95,12 @@ public class Tournoi {
             System.out.println("erreur write data" + e.getMessage());
         }
     }
+    /**
+     * Met à jour l'objet Tournoi correspondant au code de tournoi de l'objet Tournoi en paramètre dans une nouvelle liste d'objets Tournoi.
+     *
+     * @param tournoi l'objet Tournoi à mettre à jour
+     * @return une nouvelle liste d'objets Tournoi avec l'objet Tournoi mis à jour
+     */
     public static ArrayList<Tournoi> SetTournoiInList(Tournoi tournoi) // retourne aussi dans une nouvelle liste
     {
         ArrayList<Tournoi> tournois = GetTournoisFromList();
@@ -90,6 +114,12 @@ public class Tournoi {
         return tournois;
     }
 
+    /**
+     * Récupère l'objet Tournoi correspondant au code de tournoi spécifié.
+     *
+     * @param codeTournoi le code de tournoi à rechercher
+     * @return l'objet Tournoi correspondant au code de tournoi spécifié, ou null si aucun objet Tournoi ne correspond.
+     */
     public static Tournoi GetTournoiByCode(String codeTournoi){
         ArrayList<Tournoi> tournois = GetTournoisFromList();
         Tournoi resultat = null;

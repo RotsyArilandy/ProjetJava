@@ -20,6 +20,9 @@ public class Pilote  implements Comparable<Pilote>{
         //this.ddn = d;
    // }
 
+    public long getTemps( ) {
+        return this.temps ;
+    }
 
     public void setTemps(long temps) {
         this.temps = temps;
