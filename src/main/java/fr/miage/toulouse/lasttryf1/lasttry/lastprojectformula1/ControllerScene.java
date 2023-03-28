@@ -104,6 +104,17 @@ public class ControllerScene {
         this.tableViewList.setItems(_listesGrandPrix);
         this.tableViewList.setVisible(true);
     }
+
+    public void switchToTournoi(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("tournoi.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
     }
 
 

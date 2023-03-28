@@ -52,6 +52,7 @@ public class ControllerQ1 implements Initializable{
     public Tournoi _tournoi;
 
 
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pilote.setCellValueFactory(new PropertyValueFactory<Pilote,String>("nomPilote"));
 
@@ -106,14 +107,6 @@ public class ControllerQ1 implements Initializable{
 
         }
     }
-    /**public static long convertToLong(TextField textField) {
-        String inputText = textField.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm:ss");
-        LocalDateTime localDateTime = LocalDateTime.parse(inputText, formatter);
-        Instant instant = localDateTime.toInstant(java.time.ZoneOffset.UTC);
-        return instant.getEpochSecond();
-    }**/
-
         public void trier() {
             //lien entre le textfiled et les pilote
             for (int i = 0; i < _pilote.size(); i++) {
@@ -128,11 +121,6 @@ public class ControllerQ1 implements Initializable{
             }
             tableView.setItems(obEcurie);
         }
-
-
-
-
-
         public static Long parseLong(TextField textField) {
             String inputText = textField.getText();
             try {
