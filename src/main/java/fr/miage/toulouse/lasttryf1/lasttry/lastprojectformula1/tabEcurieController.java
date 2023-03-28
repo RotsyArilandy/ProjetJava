@@ -57,8 +57,8 @@ public class tabEcurieController implements Initializable {
     @FXML
     private Button Suivant;
 
-    private ArrayList<Ecurie> _ecuries;
-    private Tournoi _tournoi;
+    public static ArrayList<Ecurie> _ecuries;
+    public static Tournoi _tournoi;
 
     int nbClick = 0;
 

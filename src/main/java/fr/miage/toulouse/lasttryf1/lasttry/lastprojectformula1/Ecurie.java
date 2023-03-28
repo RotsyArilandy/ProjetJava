@@ -5,6 +5,7 @@ public class Ecurie {
     private String ecurie;
     private Pilote  pilote1;
     private Pilote pilote2;
+
     public Ecurie(String ecurie, Pilote pilote1, Pilote pilote2) {
         this.ecurie = ecurie;
         this.pilote1 = pilote1;

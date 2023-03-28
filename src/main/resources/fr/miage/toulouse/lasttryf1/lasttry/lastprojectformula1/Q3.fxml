@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1.ControllerQ3">
    <top>
       <Text layoutX="221.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qualification 3" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <font>
@@ -21,32 +21,19 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="287.0" layoutY="10.0" prefHeight="206.0" prefWidth="308.0">
+            <TableView fx:id="tableView" layoutX="248.0" layoutY="14.0" prefHeight="287.0" prefWidth="343.0">
                <columns>
-                  <TableColumn prefWidth="160.66668701171875" text="Pilote" />
-                  <TableColumn prefWidth="141.33331298828125" text="Temps" />
+                  <TableColumn fx:id="pilote" prefWidth="128.00006103515625" text="Pilote" />
                </columns>
             </TableView>
-            <VBox layoutX="8.0" layoutY="27.0" prefHeight="40.0" prefWidth="257.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="289.0" text="Ajouter les pilotes" />
-               </children>
+            <VBox fx:id="container" layoutX="11.0" layoutY="11.0" prefHeight="347.0" prefWidth="101.0">
+               <children></children>
             </VBox>
-            <VBox layoutX="6.0" layoutY="97.0" prefHeight="78.0" prefWidth="262.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter le temps effectuer en seconde :">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font>
-                  </Text>
-                  <TextField text="1000" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="340.0" text="Valider" />
-               </children>
+            <Button layoutX="197.0" layoutY="143.0" mnemonicParsing="false" text="Trier" onAction="#trier" />
+            <Button layoutX="500.0" layoutY="313.0" mnemonicParsing="false" onAction="#switchToQ3" prefHeight="25.0" prefWidth="68.0" text="Suivant" />
+            <Button layoutX="237.0" layoutY="313.0" mnemonicParsing="false" text="Precédent" />
+            <VBox layoutX="102.0" layoutY="7.0" prefHeight="335.0" prefWidth="79.0">
             </VBox>
-            <Button layoutX="360.0" layoutY="226.0" mnemonicParsing="false" text="Trier" />
-            <Button layoutX="450.0" layoutY="226.0" mnemonicParsing="false" text="Supprimer" />
-            <Button layoutX="319.0" layoutY="286.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Suivant" />
-            <Button layoutX="190.0" layoutY="286.0" mnemonicParsing="false" text="Precédent" />
          </children>
       </AnchorPane>
    </center>
