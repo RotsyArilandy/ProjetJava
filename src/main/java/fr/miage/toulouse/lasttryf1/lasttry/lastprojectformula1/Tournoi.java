@@ -15,6 +15,8 @@ public class Tournoi {
     public ArrayList<GrandPrix> tabGrandPrix;
     public LocalDate DateDeb;
     public LocalDate DateFin;
+
+    public ArrayList<Pilote> resulat;
     /**
      *  constructeur de tournoi
      */
@@ -177,9 +179,9 @@ public class Tournoi {
                 for (int j = 0; j < listEcuriesSousFormeArray.length(); j++) {
                     JSONObject gpObject = listEcuriesSousFormeArray.getJSONObject(j);
                     Ecurie ecurie = new Ecurie(
-                            gpObject.getString("ecurie"),
-                            (Pilote) gpObject.get("pilote1"),
-                            (Pilote)gpObject.get("pilote2")
+                            gpObject.getString("ecurie"), new Pilote("Paul"),new Pilote("Jacques")
+                           // (Pilote) gpObject.get("pilote1"),
+                           // (Pilote)gpObject.get("pilote2")
                     );
                     tour.ecuries.add(ecurie);
                 }
@@ -200,4 +202,6 @@ public class Tournoi {
         }
         return tournois;
     }
+
+
 }
