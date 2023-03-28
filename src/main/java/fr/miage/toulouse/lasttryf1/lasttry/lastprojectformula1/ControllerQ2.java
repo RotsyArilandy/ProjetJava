@@ -35,7 +35,7 @@ import javafx.scene.control.TextField;
 public class ControllerQ2 {
     private Stage stage;
     private Scene scene;
-    ArrayList<Pilote> _pilote = new ArrayList<>();
+    static ArrayList<Pilote> _pilote = new ArrayList<>();
     ArrayList<Object> labels = new ArrayList<>();
     ArrayList<TextField> champs = new ArrayList<>();
     public TableView<Pilote> tableView;
@@ -58,24 +58,21 @@ public class ControllerQ2 {
     }
 
     public void setTournoi(Tournoi tournoi) {
-        _tournoi = tournoi;
-
-        //Créer un arraylist de pilote
-        for (int i = 0; i < _tournoi.ecuries.size(); i++) {
-            _pilote.add(_tournoi.ecuries.get(i).getPilote1());
-            _pilote.add(_tournoi.ecuries.get(i).getPilote2());
-        }
         Comparator<Pilote> comparator = Comparator.comparing(Pilote::getTemps);
 
-        Collections.sort(_pilote, comparator);
-        for (int i = 0; i < _pilote.size()-5; i++) {
+        Collections.sort(ControllerQ1._pilote, comparator);
+        for (int i = 0; i < ControllerQ1._pilote.size()-5; i++) {
+            this._pilote.add(ControllerQ1._pilote.get(i));
+
+        }
+        for (int i = 0; i < this._pilote.size(); i++) {
             Label label = new Label("Label " + i);
             TextField champ = new TextField();
             labels.add(label);
             champs.add(champ);
             container.getChildren().add(label);
             container.getChildren().add(champ);
-            label.setText(_pilote.get(i).getNomPilote());
+            label.setText(this._pilote.get(i).getNomPilote());
 
         }
     }
@@ -101,10 +98,11 @@ public class ControllerQ2 {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load(), 560, 560);
         stage.setScene(scene);
-        ControllerQ2 q2Controller = fxmlLoader.getController();
-        _tournoi.ecuries = tabEcurieController._ecuries;
-        q2Controller.setTournoi(_tournoi);
-        Tournoi actuel = Tournoi.GetTournoiByCode(_tournoi.codeTournoi);
+        ControllerQ3 q3Controller = fxmlLoader.getController();
+        this._tournoi= tabEcurieController._tournoi;
+        this._tournoi.ecuries = tabEcurieController._ecuries;
+        q3Controller.setTournoi(this._tournoi);
+        Tournoi actuel = Tournoi.GetTournoiByCode(this._tournoi.codeTournoi);
         if(actuel != null) {
             // si la liste des écuries est vide, on initialise
             if (actuel.ecuries == null)
@@ -125,6 +123,15 @@ public class ControllerQ2 {
             return null; // renvoie null si le texte ne peut pas être analysé en Long
         }
 
+    }
+
+    public void switchToQ1(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q1.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

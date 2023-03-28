@@ -94,6 +94,10 @@ public class tabEcurieController implements Initializable {
             tableView.setItems(obEcurie);
             _ecuries.add(E);
             nbClick++;
+            ecurieInput.setText("");
+            pilote1Input.setText("");
+            pilote2Input.setText("");
+
         }
     }
     @FXML
@@ -159,5 +163,14 @@ public class tabEcurieController implements Initializable {
     public void setTournoi(Tournoi tournoi)
     {
         _tournoi = tournoi;
+    }
+
+    public void switchToGp(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("createtournoi.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
     }
 }
