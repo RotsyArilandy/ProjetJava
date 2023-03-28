@@ -24,7 +24,6 @@
             <TableView fx:id="tableView" layoutX="248.0" layoutY="14.0" prefHeight="287.0" prefWidth="343.0">
               <columns>
                 <TableColumn fx:id="pilote" prefWidth="128.00006103515625" text="Pilote" />
-                <TableColumn fx:id="temps" prefWidth="174.6666259765625" text="Temps" />
               </columns>
             </TableView>
             <VBox fx:id="container" layoutX="11.0" layoutY="11.0" prefHeight="347.0" prefWidth="101.0">

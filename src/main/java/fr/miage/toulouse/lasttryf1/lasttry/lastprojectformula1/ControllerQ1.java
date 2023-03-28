@@ -51,10 +51,15 @@ public class ControllerQ1 implements Initializable{
     private Tournoi _tournoi;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        pilote.setCellValueFactory(new PropertyValueFactory<Pilote,String>("Pilote"));
-        temps.setCellValueFactory(new PropertyValueFactory<Pilote,Long>("Temps"));
+        pilote.setCellValueFactory(new PropertyValueFactory<Pilote,String>("nomPilote"));
 
     }
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void switchToQ2(ActionEvent event) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q2.fxml"));
