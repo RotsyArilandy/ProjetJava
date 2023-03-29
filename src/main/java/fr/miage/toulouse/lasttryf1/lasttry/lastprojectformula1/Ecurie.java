@@ -12,14 +12,24 @@ public class Ecurie {
         this.pilote2 = pilote2;
     }
 
+    /**
+     *
+     * @return l'affichage de ecurie
+     */
     public String getEcurie() {
         return ecurie;
     }
-
+    /**
+     *
+     * @return l'affichage de pilote1
+     */
     public Pilote getPilote1(){
         return pilote1;
     }
-
+    /**
+     *
+     * @return l'affichage de pilote2
+     */
     public Pilote getPilote2(){
         return pilote2;
     }

@@ -7,13 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -37,6 +34,12 @@ public class ControllerScene {
     private Scene scene;
     private ArrayList<Tournoi> _tournoi = new ArrayList<>();
     private static final String _dataPath = "data/tournoi.json";
+
+    /**cette methode nous permet de passer de la page d'accueil à la page Calendrier
+     *
+     * @param event
+     * @throws IOException
+     */
     public void switchToCalendrier(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Calendrier.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -45,6 +48,11 @@ public class ControllerScene {
         stage.show();
     }
 
+    /**cette methode nous permet de revenir de la page Calendrier à la page d'acceuil
+     *
+     * @param event
+     * @throws IOException
+     */
     public void switchToAccueil(ActionEvent event) throws IOException{
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Accueil.fxml"));
@@ -54,6 +62,11 @@ public class ControllerScene {
         stage.show();
     }
 
+    /** cette methode nous permet de passer de la page Calendrier à la page GrandPrix et verifie si tout les champs sont bien rentrés
+     *
+     * @param event
+     * @throws IOException
+     */
     //A VERIFIER ET A TESTER
     public void switchToAjouterGP(ActionEvent event) throws IOException {
         if ( (nomTournoi.getText() == null) || (DateDeb.getValue() == null) || (DateFin.getValue() == null ) ){
@@ -84,6 +97,11 @@ public class ControllerScene {
         }
     }
 
+    /**cette methode permet l'affichage d'une allerte si les champs dans calendrier sont mal rentrés
+     *
+     * @param type
+     * @param message
+     */
     public  void showAlert(Alert.AlertType type, String message) {
         Alert alert = new Alert(type);
         alert.setContentText(message);
@@ -94,6 +112,9 @@ public class ControllerScene {
         });
     }
 
+    /**afficher les anciens tournois dans une arraylist
+     *
+     */
     public void accederAutresTournoi()
     {
         ArrayList<Tournoi> _tournoisExistants = Tournoi.GetTournoisFromList();

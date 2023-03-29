@@ -15,21 +15,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.time.LocalDate;
-
 import java.io.IOException;
-import java.security.Timestamp;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
-import java.util.Date;
 import java.util.ResourceBundle;
-
-import javafx.scene.control.TextField;
 
 public class ControllerQ1 implements Initializable{
     private Stage stage;
@@ -45,13 +35,11 @@ public class ControllerQ1 implements Initializable{
 
     @FXML
     private VBox container;
-    static ArrayList<Pilote> _pilote = new ArrayList<>();
+    ArrayList<Pilote> _pilote = new ArrayList<>();
     ArrayList<Object> labels = new ArrayList<>();
     ArrayList<TextField> champs = new ArrayList<>();
 
-    public Tournoi _tournoi;
-
-
+    private Tournoi _tournoi;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pilote.setCellValueFactory(new PropertyValueFactory<Pilote,String>("nomPilote"));
@@ -69,20 +57,6 @@ public class ControllerQ1 implements Initializable{
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load(), 560, 560);
         stage.setScene(scene);
-        ControllerQ2 q2Controller = fxmlLoader.getController();
-        this._tournoi= tabEcurieController._tournoi;
-        this._tournoi.ecuries = tabEcurieController._ecuries;
-        q2Controller.setTournoi(this._tournoi);
-        Tournoi actuel = Tournoi.GetTournoiByCode(this._tournoi.codeTournoi);
-        if(actuel != null) {
-            // si la liste des écuries est vide, on initialise
-            if (actuel.ecuries == null)
-                actuel.ecuries = new ArrayList<>();
-
-            actuel.ecuries.addAll(tabEcurieController._ecuries);
-            ArrayList<Tournoi> tournois = Tournoi.SetTournoiInList(actuel);
-            Tournoi.WriteData(tournois);
-        }
         stage.show();
     }
 
@@ -107,20 +81,32 @@ public class ControllerQ1 implements Initializable{
 
         }
     }
+    /**public static long convertToLong(TextField textField) {
+        String inputText = textField.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.parse(inputText, formatter);
+        Instant instant = localDateTime.toInstant(java.time.ZoneOffset.UTC);
+        return instant.getEpochSecond();
+    }**/
+
         public void trier() {
             //lien entre le textfiled et les pilote
             for (int i = 0; i < _pilote.size(); i++) {
                 _pilote.get(i).temps = parseLong(champs.get(i));
             }
-            Comparator<Pilote> comparator = Comparator.comparing(Pilote::getTemps);
-
-            Collections.sort(_pilote, comparator);
+            Collections.sort(_pilote);
             ObservableList<Pilote> obEcurie = tableView.getItems();
+            obEcurie.clear();
             for (int i = 0; i < _pilote.size(); i++) {
                 obEcurie.add(_pilote.get(i));
             }
             tableView.setItems(obEcurie);
         }
+
+
+
+
+
         public static Long parseLong(TextField textField) {
             String inputText = textField.getText();
             try {
@@ -129,15 +115,6 @@ public class ControllerQ1 implements Initializable{
                 return null; // renvoie null si le texte ne peut pas être analysé en Long
             }
 
-    }
-
-    public void switchToEcurie(ActionEvent event) throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ecurie.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader.load(), 560, 560);
-        stage.setScene(scene);
-        stage.show();
     }
 
 

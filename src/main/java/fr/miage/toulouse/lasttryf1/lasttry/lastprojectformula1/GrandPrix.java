@@ -3,7 +3,6 @@ package fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1;
 import org.json.JSONObject;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class GrandPrix {
 
@@ -11,16 +10,30 @@ public class GrandPrix {
     private String pays;
     private LocalDate date;
 
+    /**
+     * on crée un constructeur d'un grand prix
+     * @param name
+     * @param pays
+     * @param date
+     */
+
     public GrandPrix(String name, String pays, LocalDate date){
         this.name = name;
         this.pays = pays;
         this.date = date;
     }
 
+    /**
+     * on prend le nom
+     * @return
+     */
     public String getName(){
         return this.name;
     }
-
+    /**
+     * on retourne le nom
+     * @return
+     */
     public void setName(String name){
         this.name = name;
     }
@@ -41,6 +54,10 @@ public class GrandPrix {
         this.date = d;
     }
 
+    /**
+     * Entregistre le nom le pays et la date dans un fichier json
+     * @return
+     */
     public JSONObject GetJSONObject(){
         if(this == null)
             return new JSONObject();
