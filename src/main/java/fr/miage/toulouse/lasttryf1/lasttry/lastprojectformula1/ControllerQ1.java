@@ -37,7 +37,7 @@ public class ControllerQ1 implements Initializable{
 
     @FXML
     private VBox container;
-    ArrayList<Pilote> _pilote = new ArrayList<>();
+    static ArrayList<Pilote> _pilote = new ArrayList<>();
     ArrayList<Object> labels = new ArrayList<>();
     ArrayList<TextField> champs = new ArrayList<>();
 

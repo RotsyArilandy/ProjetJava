@@ -48,6 +48,8 @@ public class ControllerQ2 {
     @FXML
     private VBox container;
 
+    public static ArrayList <Pilote>  _pilote;
+
     private Tournoi _tournoi;
 
 
