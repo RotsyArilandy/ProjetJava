@@ -2,7 +2,6 @@ package fr.miage.toulouse.lasttryf1.lasttry.lastprojectformula1;
 
 import org.json.JSONObject;
 
-import java.security.Timestamp;
 
 public class Pilote  implements Comparable<Pilote>{
     private String nomPilote;
@@ -10,6 +9,10 @@ public class Pilote  implements Comparable<Pilote>{
    // private String nationalite;
     //private Date ddn; //La date de naissance du pilote
 
+    /**
+     * constructeur de pilote
+     * @param nom
+     */
     public Pilote(String nom){
         this.nomPilote = nom;
     }
@@ -28,6 +31,10 @@ public class Pilote  implements Comparable<Pilote>{
         this.temps = temps;
     }
 
+    /**
+     * recupère le nom de pilote
+     * @return
+     */
     public String getNomPilote() {
         return nomPilote;
     }
@@ -40,6 +47,10 @@ public class Pilote  implements Comparable<Pilote>{
         return ddn;
     }*/
 
+    /**
+     * recupère les pilotes et le temps dans le dossier de sauvgarde json
+     * @return
+     */
     public JSONObject GetJSONObject(){
         if(this == null)
             return new JSONObject();
@@ -57,6 +68,11 @@ public class Pilote  implements Comparable<Pilote>{
         }
     }
 
+    /**
+     * fait le tri descendant de tout les pilotes
+     * @param p2 the object to be compared.
+     * @return
+     */
     @Override
     public int compareTo(Pilote p2) {
         //tri desc
