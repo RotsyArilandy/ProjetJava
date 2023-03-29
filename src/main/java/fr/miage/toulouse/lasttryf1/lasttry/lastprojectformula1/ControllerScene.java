@@ -102,7 +102,7 @@ public class ControllerScene {
         }
     }
 
-    /**cette methode permet l'affichage d'une allerte si les champs dans calendrier sont mal rentrés
+    /**cette methode permet l'affichage d'une alerte si les champs dans calendrier sont mal rentrés
      *
      * @param type
      * @param message

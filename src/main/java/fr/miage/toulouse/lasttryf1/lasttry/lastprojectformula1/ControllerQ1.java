@@ -19,9 +19,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ControllerQ1 implements Initializable{
+
     private Stage stage;
     private Scene scene;
 
