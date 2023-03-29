@@ -7,40 +7,36 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class TournoiController  implements Initializable {
-
+public class TournoiController {
     @FXML
-    private TableView<Tournoi> tab;
-
+    VBox code;
     @FXML
-    private TableColumn<Tournoi,String> nomTournoi;
-
+    VBox t;
     @FXML
-    private TableColumn<Tournoi,String> code;
-
+    VBox deb;
     @FXML
-    private TableColumn<Tournoi, LocalDate> dateDeb;
-
+    VBox fin;
     @FXML
-    private TableColumn<Tournoi,LocalDate> dateFin;
-
-    @FXML
-    private TableColumn<Tournoi,String> resultat;
+    VBox resultat;
 
 
     private ArrayList<Tournoi> _tournoi = new ArrayList<>();
+
     public void switchToAccueil(ActionEvent event) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Accueil.fxml"));
@@ -52,22 +48,36 @@ public class TournoiController  implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //code.setCellValueFactory(new PropertyValueFactory<Tournoi, String>("codeTournoi"));
-        nomTournoi.setCellValueFactory(new PropertyValueFactory<Tournoi,String>("nomTournoi"));
-        dateDeb.setCellValueFactory(new PropertyValueFactory<Tournoi,LocalDate>("DateDeb"));
-        dateFin.setCellValueFactory(new PropertyValueFactory<Tournoi, LocalDate>("DateFin"));
-        //resultat.setCellValueFactory(new PropertyValueFactory<Tournoi, String>("resultat"));
-
-    }
+    /**
+     * permet de récupérer le tournoi de la page précédente
+     * @param tournoi tournoi envoyé par le controlleur de la page précédente
+     */
     public void setTournoi(ArrayList tournoi) {
         _tournoi = tournoi;
 
-        ObservableList<Tournoi> obTournoi = tab.getItems();
-        for (int i = 0 ; i < _tournoi.size(); i++){
-            obTournoi.add(_tournoi.get(i));
+
+        for (int i = 0; i < _tournoi.size(); i++) {
+            Label V1 = new Label();
+            Label V2 = new Label();
+            Label V3 = new Label();
+            Label V4 = new Label();
+            Label V5 = new Label();
+            code.getChildren().add(V1);
+            t.getChildren().add(V2);
+            deb.getChildren().add(V3);
+            fin.getChildren().add(V4);
+            resultat.getChildren().add(V5);
+            V1.setText(_tournoi.get(i).codeTournoi);
+            V2.setText(_tournoi.get(i).nomTournoi);
+            V3.setText(_tournoi.get(i).dateDebToString());
+            V4.setText(_tournoi.get(i).dateFinToString());
+            //V5.setText(_tournoi.get(i).resultatToString()); // Dépend de q1, q2, q3
+
+
+
         }
-        tab.setItems(obTournoi);
+
+
     }
 }
+

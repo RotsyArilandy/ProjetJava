@@ -203,5 +203,41 @@ public class Tournoi {
         return tournois;
     }
 
+    /**
+     *
+     * @return retourne une chaine de caractère représetant la date de début du tournoi
+     */
+    public String dateDebToString(){
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        String formattedString = this.DateDeb.format(formatter);
+        return formattedString;
+    }
+
+    /**
+     *
+     * @return retourne une chaine de caractère  représentant la date de fin du tournoi
+     */
+    public String dateFinToString(){
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        String formattedString = this.DateFin.format(formatter);
+        return formattedString;
+    }
+
+    /**
+     *
+     * @return retourne une chaine de caractère contenant le classement des pilotes lors du tournoi
+     */
+    public String resultatToString(){
+        String s = "";
+        for (int i =0 ; i < this.resulat.size(); i++){
+            s += resulat.get(i).getNomPilote();
+            s+= ",";
+        }
+        return s;
+
+    }
+
 
 }

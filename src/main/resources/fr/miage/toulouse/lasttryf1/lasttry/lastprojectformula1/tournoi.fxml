@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -24,16 +24,37 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tab" layoutX="59.0" layoutY="7.0" prefHeight="244.0" prefWidth="487.0">
-              <columns>
-                <TableColumn fx:id="code" prefWidth="81.99996948242188" text="Code Tournoi" />
-                  <TableColumn fx:id="nomTournoi" prefWidth="84.00003051757812" text="Tournoi" />
-                <TableColumn fx:id="dateDeb" prefWidth="64.66668701171875" text="Début" />
-                  <TableColumn fx:id="dateFin" prefWidth="65.3333740234375" text="Fin" />
-                  <TableColumn fx:id="resultat" prefWidth="65.3333740234375" text="Resultat" />
-              </columns>
-            </TableView>
             <Button layoutX="262.0" layoutY="266.0" mnemonicParsing="false" onAction="#switchToAccueil" prefHeight="25.0" prefWidth="107.0" text="Retour" />
+            <Label layoutX="110.0" layoutY="14.0" text="Tournois">
+               <font>
+                  <Font name="System Bold Italic" size="21.0" />
+               </font>
+            </Label>
+            <VBox fx:id="t" layoutX="110.0" layoutY="42.0" prefHeight="200.0" prefWidth="83.0" style="-fx-border-color: CECECE;" />
+            <VBox fx:id="deb" layoutX="197.0" layoutY="42.0" prefHeight="200.0" prefWidth="87.0" style="-fx-border-color: CECECE;" />
+            <Label layoutX="220.0" layoutY="14.0" text="Début">
+               <font>
+                  <Font name="System Bold Italic" size="21.0" />
+               </font>
+            </Label>
+            <VBox fx:id="fin" disable="true" layoutX="287.0" layoutY="42.0" prefHeight="200.0" prefWidth="93.0" style="-fx-border-color: CECECE;" />
+            <Label layoutX="309.0" layoutY="14.0" text="Fin">
+               <font>
+                  <Font name="System Bold Italic" size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="410.0" layoutY="14.0" text="Résultat ">
+               <font>
+                  <Font name="System Bold Italic" size="21.0" />
+               </font>
+            </Label>
+            <VBox fx:id="resultat" layoutX="383.0" layoutY="42.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: CECECE;" />
+            <Label layoutX="41.0" layoutY="14.0" prefHeight="31.0" prefWidth="55.0" text="Code">
+               <font>
+                  <Font name="System Bold Italic" size="21.0" />
+               </font>
+            </Label>
+            <VBox fx:id="code" layoutX="39.0" layoutY="42.0" prefHeight="200.0" prefWidth="67.0" style="-fx-border-color: cecece;" />
          </children>
       </AnchorPane>
    </center>
