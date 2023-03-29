@@ -82,21 +82,20 @@ public class ControllerQ3 implements Initializable {
 
 
     public void setTournoi(Tournoi tournoi) {
-        _tournoi = tournoi;
+        Comparator<Pilote> comparator = Comparator.comparing(Pilote::getTemps);
 
-        //Créer un arraylist de pilote
-        for (int i = 0; i < _tournoi.ecuries.size(); i++) {
-            _pilote.add(_tournoi.ecuries.get(i).getPilote1());
-            _pilote.add(_tournoi.ecuries.get(i).getPilote2());
+        Collections.sort(ControllerQ2._pilote, comparator);
+        for (int i = 0; i < ControllerQ2._pilote.size()-5; i++) {
+            this._pilote.add(ControllerQ2._pilote.get(i));
         }
-        for (int i = 0; i < _pilote.size(); i++) {
+        for (int i = 0; i <this. _pilote.size(); i++) {
             Label label = new Label("Label " + i);
             TextField champ = new TextField();
             labels.add(label);
             champs.add(champ);
             container.getChildren().add(label);
             container.getChildren().add(champ);
-            label.setText(_pilote.get(i).getNomPilote());
+            label.setText(this._pilote.get(i).getNomPilote());
 
         }
     }
@@ -113,14 +112,14 @@ public class ControllerQ3 implements Initializable {
 
     public void trier() {
         //lien entre le textfiled et les pilote
-        for (int i = 0; i < _pilote.size(); i++) {
+        for (int i = 0; i < _pilote.size()-5; i++) {
             _pilote.get(i).temps = parseLong(champs.get(i));
         }
         Comparator<Pilote> comparator = Comparator.comparing(Pilote::getTemps);
 
         Collections.sort(_pilote, comparator);
         ObservableList<Pilote> obEcurie = tableView.getItems();
-        for (int i = 0; i < _pilote.size(); i++) {
+        for (int i = 0; i < _pilote.size()-5; i++) {
             obEcurie.add(_pilote.get(i));
         }
         tableView.setItems(obEcurie);
@@ -136,6 +135,13 @@ public class ControllerQ3 implements Initializable {
         }
 
     }
+    public void switchToQ2(ActionEvent event) throws IOException {
 
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Q2.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 }

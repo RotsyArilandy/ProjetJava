@@ -45,7 +45,7 @@ public class ControllerQ1 implements Initializable{
 
     @FXML
     private VBox container;
-    ArrayList<Pilote> _pilote = new ArrayList<>();
+    static ArrayList<Pilote> _pilote = new ArrayList<>();
     ArrayList<Object> labels = new ArrayList<>();
     ArrayList<TextField> champs = new ArrayList<>();
 
@@ -129,6 +129,15 @@ public class ControllerQ1 implements Initializable{
                 return null; // renvoie null si le texte ne peut pas être analysé en Long
             }
 
+    }
+
+    public void switchToEcurie(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ecurie.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load(), 560, 560);
+        stage.setScene(scene);
+        stage.show();
     }
 
 

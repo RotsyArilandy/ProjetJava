@@ -30,8 +30,8 @@
                <children></children>
             </VBox>
             <Button layoutX="197.0" layoutY="143.0" mnemonicParsing="false" text="Trier" onAction="#trier" />
-            <Button layoutX="500.0" layoutY="313.0" mnemonicParsing="false" onAction="#switchToQ3" prefHeight="25.0" prefWidth="68.0" text="Suivant" />
-            <Button layoutX="237.0" layoutY="313.0" mnemonicParsing="false" text="Precédent" />
+            <Button layoutX="500.0" layoutY="313.0" mnemonicParsing="false" onAction="#switchToCourse" prefHeight="25.0" prefWidth="68.0" text="Suivant" />
+            <Button layoutX="237.0" layoutY="313.0" mnemonicParsing="false" text="Precédent" onAction="#switchToQ2" />
             <VBox layoutX="102.0" layoutY="7.0" prefHeight="335.0" prefWidth="79.0">
             </VBox>
          </children>
